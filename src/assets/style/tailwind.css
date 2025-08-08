@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ebony: #1f2937;
+  --color-athens-gray: #f3f4f6;
+  --color-chateau-gray: #9ca3af;
+  --color-purple: #5b3efd;
+  --color-gray: #e2e8f0;
+  --color-oxford-blue: #374151;
+  --color-river-bed: #4b5563;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
