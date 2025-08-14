@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Cart from './components/Cart.vue'
-import MainCard from './components/MainCard.vue'
+import Cart from './components/CartList.vue'
+import MainCard from './components/Card/MainCard.vue'
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import api from '@/services'
+import api from '@/services/services'
 import type { IList } from '@/types/IList'
 import { defineStore } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
@@ -12,11 +12,12 @@ export const useListStore = defineStore('list', () => {
     list.value = response.data
   }
 
-  // lista filtrada
   const filteredList = computed(() => {
     if (!searchTerm.value) return list.value
-    return list.value.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.value.toLowerCase()),
+    return list.value.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchTerm.value.toLowerCase()),
     )
   })
 

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/useCartStore'
 import { useListStore } from '@/stores/useListStore'
+import { useFavoriteStore } from '@/stores/useFavoriteStore'
 
 const cartStore = useCartStore()
 const listStore = useListStore()
+const favoriteStore = useFavoriteStore()
 </script>
 
 <template>
@@ -14,7 +16,9 @@ const listStore = useListStore()
     <nav
       class="flex gap-3.5 flex-row justify-end items-center sm:col-start-3 sm:row-start-1 relative"
     >
-      <img class="size-5" src="../assets/icons/heart.svg" alt="Icone de Coração" />
+      <button @click="favoriteStore.toggleModalFavorites">
+        <img class="size-5" src="../assets/icons/heart.svg" alt="Icone de Coração" />
+      </button>
       <div class="flex items-center relative size-10">
         <button @click="cartStore.showModal">
           <img class="size-5" src="../assets/icons/cart.svg" alt="Icone de Carrinho" />
