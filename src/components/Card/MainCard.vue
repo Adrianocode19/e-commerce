@@ -4,7 +4,6 @@ import MainHeader from '../MainHeader.vue'
 import MainFooter from '../Footer/MainFooter.vue'
 import { useListStore } from '@/stores/useListStore'
 import { computed } from 'vue'
-import Favorites from '../FavoritesList.vue'
 
 const listStore = useListStore()
 
@@ -38,6 +37,5 @@ const list = computed(() => {
       </div>
     </section>
   </main>
-  <Favorites />
   <MainFooter />
 </template>

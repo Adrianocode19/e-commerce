@@ -15,7 +15,7 @@ const FinishPurchase = () => {
     v-if="cartStore.modal"
     class="flex justify-center items-center h-screen w-screen bg-[rgba(0,0,0,0.5)] fixed top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4"
   >
-    <section class="bg-white h-[400px] w-[330px] sm:h-[500px] sm:w-[620px] rounded-lg shadow-md">
+    <section class="bg-white h-[400px] w-11/12 sm:h-[500px] sm:w-[620px] rounded-lg shadow-md">
       <div
         class="flex justify-between w-full pt-4 pb-2 px-3 sm:pt-6 sm:pb-3.5 sm:px-3.5 border-b border-[#BBBBBB]"
       >
