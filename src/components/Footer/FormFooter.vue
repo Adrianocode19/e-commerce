@@ -98,6 +98,7 @@ function onSubmit() {
       <input
         v-model="phone"
         @blur="validateField('phone', phone)"
+        v-mask="'(##) #####-####'"
         type="tel"
         placeholder="Seu telefone"
         class="py-2.5 px-4 bg-oxford-blue rounded-lg text-base text-chateau-gray outline-none border-[1px] border-river-bed"
@@ -108,6 +109,8 @@ function onSubmit() {
       <input
         v-model="birthdate"
         @blur="validateField('birthdate', birthdate)"
+        v-mask="'##/##/####'"
+        type="text"
         placeholder="Sua data de nascimento"
         class="py-2.5 px-4 bg-oxford-blue rounded-lg text-base text-chateau-gray outline-none border-[1px] border-river-bed"
       />
