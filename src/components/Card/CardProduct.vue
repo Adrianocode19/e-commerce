@@ -6,7 +6,7 @@ import { useFavoriteStore } from '@/stores/useFavoriteStore'
 import { formatValue } from '@/utils/formatValue'
 import heart from '../../assets/icons/heart.svg'
 import heartFilled from '../../assets/icons/heart-filled.svg'
-import BtnAdd from '../MainBtn.vue'
+import BtnAdd from './CardBtn.vue'
 const favoriteStore = useFavoriteStore()
 
 const props = defineProps<{

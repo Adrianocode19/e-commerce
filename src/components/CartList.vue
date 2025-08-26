@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/useCartStore'
-import BtnAdd from './Card/MainBtn.vue'
+import BtnAdd from './MainBtn.vue'
 import { formatValue } from '@/utils/formatValue'
 
 const cartStore = useCartStore()

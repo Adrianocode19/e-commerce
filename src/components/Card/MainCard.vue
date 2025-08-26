@@ -4,6 +4,7 @@ import MainHeader from '../MainHeader.vue'
 import MainFooter from '../Footer/MainFooter.vue'
 import { useListStore } from '@/stores/useListStore'
 import { computed } from 'vue'
+import MainLayout from '@/Layout/MainLayout.vue'
 
 const listStore = useListStore()
 
@@ -14,7 +15,7 @@ const list = computed(() => {
 
 <template>
   <MainHeader />
-  <main class="flex flex-col items-center max-w-screen px-3.5 py-4 relative">
+  <MainLayout>
     <img class="mb-2.5 sm:mb-[48px]" src="../../assets/img/banner.png" alt="Banner" />
     <section class="flex flex-col items-center">
       <h2 class="text-ebony text-xl font-bold mb-2.5 sm:mb-[42px]">Nossos Produtos</h2>
@@ -36,6 +37,6 @@ const list = computed(() => {
         </div>
       </div>
     </section>
-  </main>
+  </MainLayout>
   <MainFooter />
 </template>
