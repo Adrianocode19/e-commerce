@@ -133,15 +133,26 @@ const handleSubmit = async () => {
   }
 }
 
-// Renderiza o reCAPTCHA após o componente ser montado
-onMounted(() => {
-  if ((window as any).grecaptcha && recaptcha.value) {
+const waitForGrecaptcha = () => {
+  return new Promise<void>((resolve) => {
+    const check = () => {
+      if ((window as any).grecaptcha && (window as any).grecaptcha.render) {
+        resolve()
+      } else {
+        setTimeout(check, 100)
+      }
+    }
+    check()
+  })
+}
+
+onMounted(async () => {
+  await waitForGrecaptcha()
+  if (recaptcha.value) {
     recaptchaWidgetId = (window as any).grecaptcha.render(recaptcha.value, {
       sitekey: '6LcevqsrAAAAAJJArEVc_eOVtYnlB1SzJmepFnWJ',
       theme: 'dark',
     })
-  } else {
-    console.warn('reCAPTCHA não carregado. Verifique o script no HTML.')
   }
 })
 </script>
