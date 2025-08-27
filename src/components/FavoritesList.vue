@@ -2,12 +2,13 @@
 import { useFavoriteStore } from '@/stores/useFavoriteStore'
 import { useCartStore } from '@/stores/useCartStore'
 import { formatValue } from '@/utils/formatValue'
+import type { IProduct } from '@/types/IProduct'
 
 const favoriteStore = useFavoriteStore()
 const cartStore = useCartStore()
 
 const isCartItem = (itemId: number) => {
-  return cartStore.cart.some((item) => item.id === itemId)
+  return cartStore.cart.some((item: IProduct) => item.id === itemId)
 }
 </script>
 
@@ -36,19 +37,28 @@ const isCartItem = (itemId: number) => {
           >
             <div class="flex items-center gap-2.5 sm:gap-3.5">
               <div>
-                <img class="size-10 sm:size-16" :src="item.image" :alt="item.nome" />
+                <img class="size-10 sm:size-16" :src="item.image" :alt="item.title" />
               </div>
               <div>
-                <p class="text-sm sm:text-base font-semibold">{{ item.nome }}</p>
-                <p class="text-sm text-chateau-gray">{{ item.categoria }}</p>
+                <p class="text-sm sm:text-base font-semibold">{{ item.title }}</p>
+                <p class="text-sm text-chateau-gray">{{ item.category }}</p>
                 <p class="text-sm sm:text-base font-semibold text-[#5B3EFD]">
-                  {{ formatValue(item.preco) }}
+                  {{ formatValue(item.price) }}
                 </p>
               </div>
             </div>
             <div class="flex flex-col justify-end gap-1 text-white">
               <button
-                @click="cartStore.addToCart(item)"
+                @click="
+                  cartStore.addToCart({
+                    id: item.id,
+                    title: item.title,
+                    category: item.category,
+                    price: item.price,
+                    image: item.image,
+                    quantity: 1,
+                  })
+                "
                 class="p-1 bg-[#5B3EFD] rounded-lg"
                 :class="{ 'opacity-50': isCartItem(item.id) }"
                 :disabled="isCartItem(item.id)"

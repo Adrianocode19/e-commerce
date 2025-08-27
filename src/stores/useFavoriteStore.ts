@@ -1,16 +1,10 @@
+import { useFavoriteLogic } from '@/composables/useFavoriteLogic'
+import type { IProduct } from '@/types/IProduct'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useFavoriteStore = defineStore('favorite', () => {
-  const favorites = ref<
-    {
-      id: number
-      nome: string
-      categoria: string
-      preco: number
-      image: string
-    }[]
-  >([])
+  const favorites = ref<IProduct[]>([])
 
   const showModalFavorites = ref(false)
 
@@ -18,27 +12,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
     showModalFavorites.value = !showModalFavorites.value
   }
 
-  const isFavorite = (id: number) => {
-    return favorites.value.some((fav) => fav.id === id)
-  }
-
-  const addToFavorites = (item: {
-    id: number
-    nome: string
-    categoria: string
-    preco: number
-    image: string
-  }) => {
-    if (!favorites.value.find((i) => i.id === item.id)) {
-      favorites.value.push(item)
-    } else {
-      removeFromFavorites(item.id)
-    }
-  }
-
-  const removeFromFavorites = (id: number) => {
-    favorites.value = favorites.value.filter((item) => item.id !== id)
-  }
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavoriteLogic(favorites)
 
   return {
     favorites,

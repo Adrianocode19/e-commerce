@@ -3,18 +3,23 @@ import CardProduct from './CardProduct.vue'
 import MainHeader from '../MainHeader.vue'
 import MainFooter from '../Footer/MainFooter.vue'
 import { useListStore } from '@/stores/useListStore'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
+import MainLayout from '@/Layout/MainLayout.vue'
 
 const listStore = useListStore()
 
 const list = computed(() => {
   return listStore.searchTerm.length < 1 ? listStore.list : listStore.filteredList
 })
+
+onMounted(() => {
+  listStore.fetchList()
+})
 </script>
 
 <template>
   <MainHeader />
-  <main class="flex flex-col items-center max-w-screen px-3.5 py-4 relative">
+  <MainLayout>
     <img class="mb-2.5 sm:mb-[48px]" src="../../assets/img/banner.png" alt="Banner" />
     <section class="flex flex-col items-center">
       <h2 class="text-ebony text-xl font-bold mb-2.5 sm:mb-[42px]">Nossos Produtos</h2>
@@ -26,9 +31,9 @@ const list = computed(() => {
           v-for="item in list"
           :id="item.id"
           :key="item.id"
-          :nome="item.title"
-          :categoria="item.category"
-          :preco="item.price"
+          :title="item.title"
+          :category="item.category"
+          :price="item.price"
           :image="item.image"
         />
         <div v-if="listStore.searchTerm.length > 0 && listStore.filteredList.length === 0">
@@ -36,6 +41,6 @@ const list = computed(() => {
         </div>
       </div>
     </section>
-  </main>
+  </MainLayout>
   <MainFooter />
 </template>
