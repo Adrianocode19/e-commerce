@@ -35,25 +35,29 @@ const FinishPurchase = () => {
           >
             <div class="flex items-center gap-2.5 sm:gap-3.5">
               <div>
-                <img class="size-10 sm:size-16" :src="item.image" :alt="item.nome" />
+                <img class="size-10 sm:size-16" :src="item.image" :alt="item.title" />
               </div>
               <div>
-                <p class="text-sm sm:text-base font-semibold">{{ item.nome }}</p>
+                <p class="text-sm sm:text-base font-semibold">{{ item.title }}</p>
                 <p class="text-sm sm:text-base font-semibold text-[#5B3EFD]">
-                  {{ formatValue(item.preco) }}
+                  {{ formatValue(item.price) }}
                 </p>
               </div>
             </div>
             <div class="flex items-center gap-3.5 sm:gap-[18px]">
               <button
-                @click="item.quantidade > 1 ? item.quantidade-- : cartStore.removeFromCart(item.id)"
+                @click="
+                  item.quantity && item.quantity > 1
+                    ? item.quantity--
+                    : cartStore.removeFromCart(item.id)
+                "
                 class="flex items-center justify-center size-6 sm:size-8 bg-[#D9D9D9] rounded-full text-base font-bold text-center"
               >
                 <img class="size-4" src="../assets/icons/minus.svg" alt="" />
               </button>
-              <span>{{ item.quantidade }}</span>
+              <span>{{ item.quantity }}</span>
               <button
-                @click="item.quantidade++"
+                @click="item.quantity = (item.quantity || 0) + 1"
                 class="flex items-center justify-center size-6 sm:size-8 bg-[#D9D9D9] rounded-full text-base font-bold text-center"
               >
                 <img

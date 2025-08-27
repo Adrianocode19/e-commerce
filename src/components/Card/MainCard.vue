@@ -3,13 +3,17 @@ import CardProduct from './CardProduct.vue'
 import MainHeader from '../MainHeader.vue'
 import MainFooter from '../Footer/MainFooter.vue'
 import { useListStore } from '@/stores/useListStore'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import MainLayout from '@/Layout/MainLayout.vue'
 
 const listStore = useListStore()
 
 const list = computed(() => {
   return listStore.searchTerm.length < 1 ? listStore.list : listStore.filteredList
+})
+
+onMounted(() => {
+  listStore.fetchList()
 })
 </script>
 
@@ -27,9 +31,9 @@ const list = computed(() => {
           v-for="item in list"
           :id="item.id"
           :key="item.id"
-          :nome="item.title"
-          :categoria="item.category"
-          :preco="item.price"
+          :title="item.title"
+          :category="item.category"
+          :price="item.price"
           :image="item.image"
         />
         <div v-if="listStore.searchTerm.length > 0 && listStore.filteredList.length === 0">
